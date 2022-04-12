@@ -36,6 +36,10 @@ if (argv.file) {
             throw err
         }
 
+        // TODO:
+        // 1. Handle frame size other than 48x48.
+        // 2. Handle frames more than 10x10.
+        // 3. Handle frames with various sizes in a single folder. 
         const canvas = pixelsmith.createCanvas(480, 480)
 
         images.forEach((image, i) => {
@@ -47,4 +51,9 @@ if (argv.file) {
 
         canvas.export({ format: 'png' }).pipe(writable)
     })
+}
+
+if (argv.project) {
+    // TODO: Handle project.json which contains the array of output files
+    // example: ["player/sprites", "Dungeon/Enemy/sprites"]
 }
