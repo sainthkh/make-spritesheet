@@ -36,14 +36,15 @@ if (argv.file) {
             throw err
         }
 
+        const [cellX, cellY] = json.size.cell
+        const [outputX, outputY] = json.size.output
+
         // TODO:
-        // 1. Handle frame size other than 48x48.
-        // 2. Handle frames more than 10x10.
         // 3. Handle frames with various sizes in a single folder. 
-        const canvas = pixelsmith.createCanvas(480, 480)
+        const canvas = pixelsmith.createCanvas(cellX * outputX, cellY * outputY)
 
         images.forEach((image, i) => {
-            canvas.addImage(image, 48 * (i % 10), 0 + 48 * Math.floor(i / 10))
+            canvas.addImage(image, cellX * (i % outputX), 0 + cellY * Math.floor(i / outputX))
         })
 
         const outputPath = path.join(spriteRootPath, json.output)
